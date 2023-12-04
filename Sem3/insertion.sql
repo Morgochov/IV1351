@@ -74,9 +74,9 @@ INSERT INTO instructor_payment (instructor_ID, payment_amount) VALUES
 
 -- Insert data into instructor_schedule table
 INSERT INTO instructor_schedule (instructor_ID, date) VALUES
-(1, '2023-12-10'),
-(2, '2023-12-12'),
-(3, '2023-12-15');
+(1, '2023-12-6'),
+(2, '2023-12-7'),
+(3, '2023-12-8');
 
 -- Insert data into lesson table
 INSERT INTO lesson (lesson_ID, instructor_ID, time, place, type, proficiency, spots, minimum_spots) VALUES
@@ -94,9 +94,9 @@ INSERT INTO attendants (lesson_ID, student_ID) VALUES
 
 -- Insert data into ensemble table
 INSERT INTO ensemble (lesson_ID, spots, genre) VALUES
-(3, '15', 'Orchestra'),
-(4, '2', 'Rock'),
-(5, '1', 'Country');
+(3, '0', 'Orchestra'),
+(4, '15', 'Rock'),
+(5, '2', 'Country');
 
 -- Insert data into group_lesson table
 INSERT INTO group_lesson (lesson_ID, instrument, spots) VALUES
