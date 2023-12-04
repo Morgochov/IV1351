@@ -15,7 +15,7 @@ LEFT JOIN
     attendants a ON e.lesson_ID = a.lesson_ID
 WHERE
     l.time >= CURRENT_DATE
-    AND l.time < CURRENT_DATE + INTERVAL '1 month'
+    AND l.time < CURRENT_DATE + INTERVAL '1 week'
 GROUP BY
     e.lesson_ID, e.genre, l.time
 ORDER BY
