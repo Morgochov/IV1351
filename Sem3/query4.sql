@@ -3,7 +3,7 @@ SELECT
     e.genre,
     TO_CHAR(l.time, 'Day') AS weekday,
     CASE
-        WHEN COUNT(a.lesson_ID) >= CAST(e.spots AS INTEGER) THEN 'Full Booked'
+        WHEN COUNT(a.lesson_ID) >= CAST(e.spots AS INTEGER) THEN 'No Seats'
         WHEN COUNT(a.lesson_ID) >= CAST(e.spots AS INTEGER) - 2 THEN '1-2 Seats Left'
         ELSE 'Many Seats'
     END AS booking_status
