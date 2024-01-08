@@ -37,10 +37,10 @@ INSERT INTO instrument (instrument_ID, price, name, brand) VALUES
 (3, 300.00, 'Violin', 'Stradivarius');
 
 -- Insert data into the renting_fee table
-INSERT INTO renting_fee (student_ID, instrument_ID) VALUES
-(101, 1),
-(102, 2),
-(103, 3);
+INSERT INTO rentals (student_ID, instrument_ID, startDate, endDate) VALUES
+(101, 1, '2023-11-25 10:00:00', '2024-01-25 10:00:00'),
+(102, 2, '2023-11-25 10:00:00', '2024-01-25 10:00:00'),
+(103, 3, '2023-11-25 10:00:00', '2024-01-25 10:00:00');
 
 -- Insert data into the discount table
 INSERT INTO discount (discount_rate) VALUES
@@ -51,20 +51,25 @@ INSERT INTO instructor (instructor_ID, person_number, can_host_ensembles) VALUES
 (1, 104, B'1'),
 (2, 105, B'0');
 
--- Insert data into the instructor_payment table
-INSERT INTO instructor_payment (instructor_ID, payment_amount) VALUES
-(1, '1000.00'),
-(2, '800.00');
-
 -- Insert data into the instructor_schedule table
 INSERT INTO instructor_schedule (instructor_ID, date) VALUES
-(1, '2023-11-25'),
-(2, '2023-11-26');
+(1, '2024-01-25'),
+(2, '2024-01-25');
+
+INSERT INTO proficiency (proficiency_ID, skill_level) VALUES
+(1, 'Beginner'),
+(2, 'Intermediate'),
+(3, 'Advanced');
+
+INSERT INTO lesson_type (lesson_type_ID, type) VALUES
+(1, 'Individual'),
+(2, 'Group'),
+(3, 'Ensemble');
 
 -- Insert data into the lesson table
-INSERT INTO lesson (lesson_ID, instructor_ID, time, place, type, proficiency, spots, minimum_spots) VALUES
-(1, 1, '2023-11-25 10:00:00', 'Studio A', 'Ensemble', 'Intermediate', '10', '5'),
-(2, 2, '2023-11-26 15:00:00', 'Studio B', 'Individual', 'Beginner', '1', '1');
+INSERT INTO lesson (lesson_ID, instructor_ID, lesson_type_ID, proficiency_ID, time, place, instructor_payment) VALUES
+(1, 1, 3, 2, '2023-11-25 10:00:00', 'Studio A', '500'),
+(2, 2, 1, 1, '2023-11-26 15:00:00', 'Studio B', '300');
 
 -- Insert data into the attendants table
 INSERT INTO attendants (lesson_ID, student_ID) VALUES
@@ -88,6 +93,6 @@ INSERT INTO application (student_ID, lesson_ID, requestID, accepted) VALUES
 (103, 2, 'GHI789', B'0');
 
 -- Insert data into the lesson_fee table
-INSERT INTO lesson_fee (lesson_ID, student_ID, cost) VALUES
-(1, 101, 50.00),
-(2, 103, 70.00);
+INSERT INTO lesson_prices (lesson_type_ID, proficiency_ID, price, date) VALUES
+(3, 2, 50.00, '2024-01-25 10:00:00'),
+(1, 1, 70.00, '2024-01-25 15:00:00');

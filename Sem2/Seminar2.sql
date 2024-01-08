@@ -37,12 +37,12 @@ CREATE TABLE phone (
 ALTER TABLE phone ADD CONSTRAINT PK_phone PRIMARY KEY (person_number);
 
 
-CREATE TABLE profiency (
+CREATE TABLE proficiency (
  proficiency_ID INT NOT NULL,
  skill_level CHAR(10)
 );
 
-ALTER TABLE profiency ADD CONSTRAINT PK_profiency PRIMARY KEY (proficiency_ID);
+ALTER TABLE proficiency ADD CONSTRAINT PK_proficiency PRIMARY KEY (proficiency_ID);
 
 
 CREATE TABLE adress (
@@ -95,7 +95,7 @@ CREATE TABLE lesson (
  proficiency_ID INT,
  time TIMESTAMP(6),
  place VARCHAR(50),
- instructorPayment FLOAT(50)
+ instructor_payment FLOAT(50)
 );
 
 ALTER TABLE lesson ADD CONSTRAINT PK_lesson PRIMARY KEY (lesson_ID);
@@ -211,11 +211,11 @@ ALTER TABLE instructor_schedule ADD CONSTRAINT FK_instructor_schedule_0 FOREIGN 
 
 ALTER TABLE lesson ADD CONSTRAINT FK_lesson_0 FOREIGN KEY (instructor_ID) REFERENCES instructor (instructor_ID);
 ALTER TABLE lesson ADD CONSTRAINT FK_lesson_1 FOREIGN KEY (lesson_type_ID) REFERENCES lesson_type (lesson_type_ID);
-ALTER TABLE lesson ADD CONSTRAINT FK_lesson_2 FOREIGN KEY (proficiency_ID) REFERENCES profiency (proficiency_ID);
+ALTER TABLE lesson ADD CONSTRAINT FK_lesson_2 FOREIGN KEY (proficiency_ID) REFERENCES proficiency (proficiency_ID);
 
 
 ALTER TABLE lesson_prices ADD CONSTRAINT FK_lesson_prices_0 FOREIGN KEY (lesson_type_ID) REFERENCES lesson_type (lesson_type_ID);
-ALTER TABLE lesson_prices ADD CONSTRAINT FK_lesson_prices_1 FOREIGN KEY (proficiency_ID) REFERENCES profiency (proficiency_ID);
+ALTER TABLE lesson_prices ADD CONSTRAINT FK_lesson_prices_1 FOREIGN KEY (proficiency_ID) REFERENCES proficiency (proficiency_ID);
 
 
 ALTER TABLE attendants ADD CONSTRAINT FK_attendants_0 FOREIGN KEY (lesson_ID) REFERENCES lesson (lesson_ID);
