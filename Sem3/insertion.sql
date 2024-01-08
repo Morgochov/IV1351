@@ -91,6 +91,7 @@ INSERT INTO attendants (lesson_ID, student_ID) VALUES
 (1, 1),
 (2, 2),
 (3, 3);
+(3, 2);
 
 -- Insert data into ensemble table
 INSERT INTO ensemble (lesson_ID, spots, genre) VALUES

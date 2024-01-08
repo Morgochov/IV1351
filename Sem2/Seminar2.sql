@@ -15,7 +15,7 @@ ALTER TABLE instrument ADD CONSTRAINT PK_instrument PRIMARY KEY (instrument_ID);
 
 CREATE TABLE lesson_type (
  lesson_type_ID INT NOT NULL,
- type CHAR(10)
+ type CHAR(15)
 );
 
 ALTER TABLE lesson_type ADD CONSTRAINT PK_lesson_type PRIMARY KEY (lesson_type_ID);
@@ -39,7 +39,7 @@ ALTER TABLE phone ADD CONSTRAINT PK_phone PRIMARY KEY (person_number);
 
 CREATE TABLE proficiency (
  proficiency_ID INT NOT NULL,
- skill_level CHAR(10)
+ skill_level CHAR(15)
 );
 
 ALTER TABLE proficiency ADD CONSTRAINT PK_proficiency PRIMARY KEY (proficiency_ID);
@@ -121,8 +121,8 @@ ALTER TABLE attendants ADD CONSTRAINT PK_attendants PRIMARY KEY (lesson_ID);
 
 CREATE TABLE ensemble (
  lesson_ID INT NOT NULL UNIQUE,
- genre VARCHAR(5),
- spots VARCHAR(5),
+ genre VARCHAR(15),
+ spots VARCHAR(15),
  minimum_spots CHAR(10)
 );
 
@@ -132,7 +132,7 @@ ALTER TABLE ensemble ADD CONSTRAINT PK_ensemble PRIMARY KEY (lesson_ID);
 CREATE TABLE group_lesson (
  lesson_ID INT NOT NULL UNIQUE,
  instrument VARCHAR(50),
- spots VARCHAR(5),
+ spots VARCHAR(15),
  minimum_spots CHAR(10)
 );
 
@@ -181,14 +181,6 @@ CREATE TABLE rentals (
  endDate TIMESTAMP(6)
 );
 
-
-CREATE TABLE siblings (
- student_ID INT NOT NULL UNIQUE,
- siblingID INT,
- Attribute0 CHAR(10)
-);
-
-ALTER TABLE siblings ADD CONSTRAINT PK_siblings PRIMARY KEY (student_ID);
 
 
 ALTER TABLE phone ADD CONSTRAINT FK_phone_0 FOREIGN KEY (person_number) REFERENCES person (person_number);
@@ -245,7 +237,4 @@ ALTER TABLE lesson_fee ADD CONSTRAINT FK_lesson_fee_1 FOREIGN KEY (student_ID) R
 ALTER TABLE rentals ADD CONSTRAINT FK_rentals_0 FOREIGN KEY (student_ID) REFERENCES student (student_ID);
 ALTER TABLE rentals ADD CONSTRAINT FK_rentals_1 FOREIGN KEY (instrument_ID) REFERENCES instrument (instrument_ID);
 
-
-ALTER TABLE siblings ADD CONSTRAINT FK_siblings_0 FOREIGN KEY (student_ID) REFERENCES student (student_ID);
-
-
+ALTER TABLE lesson DROP CONSTRAINT lesson_instructor_id_key;
