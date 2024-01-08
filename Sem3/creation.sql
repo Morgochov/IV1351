@@ -210,11 +210,11 @@ ALTER TABLE renting_fee ADD CONSTRAINT FK_renting_fee_1 FOREIGN KEY (instrument_
 
 ALTER TABLE siblings ADD CONSTRAINT FK_siblings_0 FOREIGN KEY (student_ID ) REFERENCES student (student_ID );
 
--- Drop the existing primary key constraint on attendants
 ALTER TABLE attendants
 DROP CONSTRAINT PK_attendants;
 
--- Add a new unique constraint combining lesson_id and student_ID
 ALTER TABLE attendants
 ADD CONSTRAINT PK_attendants PRIMARY KEY (lesson_ID, student_ID);
 
+ALTER TABLE lesson_fee
+DROP CONSTRAINT PK_lesson_fee;

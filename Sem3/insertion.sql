@@ -74,23 +74,23 @@ INSERT INTO instructor_payment (instructor_ID, payment_amount) VALUES
 
 -- Insert data into instructor_schedule table
 INSERT INTO instructor_schedule (instructor_ID, date) VALUES
-(1, '2023-12-6'),
-(2, '2023-12-7'),
-(3, '2023-12-8');
+(1, '2024-01-6'),
+(2, '2024-01-7'),
+(3, '2024-01-8');
 
 -- Insert data into lesson table
 INSERT INTO lesson (lesson_ID, instructor_ID, time, place, type, proficiency, spots, minimum_spots) VALUES
-(1, 1, '2023-12-6 10:00:00', 'Studio A', 'Individual', 'Beginner', '5', '3'),
-(2, 2, '2023-12-7 14:00:00', 'Room B', 'Group', 'Intermediate', '10', '8'),
-(3, 3, '2023-12-8 16:30:00', 'Hall C', 'Ensemble', 'Beginner', '1', '1'),
-(4, 3, '2023-12-9 16:30:00', 'Hall C', 'Ensemble', 'Advanced', '15', '10'),
-(5, 3, '2023-12-10 16:30:00', 'Hall C', 'Ensemble', 'Intermediate', '2', '1');
+(1, 1, '2024-01-6 10:00:00', 'Studio A', 'Individual', 'Beginner', '5', '3'),
+(2, 2, '2024-01-7 14:00:00', 'Room B', 'Group', 'Intermediate', '10', '8'),
+(3, 3, '2024-01-8 16:30:00', 'Hall C', 'Ensemble', 'Beginner', '1', '1'),
+(4, 3, '2024-01-9 16:30:00', 'Hall C', 'Ensemble', 'Advanced', '15', '10'),
+(5, 3, '2024-01-10 16:30:00', 'Hall C', 'Ensemble', 'Intermediate', '2', '1');
 
 -- Insert data into attendants table
 INSERT INTO attendants (lesson_ID, student_ID) VALUES
 (1, 1),
 (2, 2),
-(3, 3);
+(3, 3),
 (3, 2);
 
 -- Insert data into ensemble table
@@ -137,6 +137,7 @@ INSERT INTO renting_fee (student_ID, instrument_ID) VALUES
 INSERT INTO lesson_fee (lesson_ID, student_ID, cost) VALUES
 (1, 1, 100.00),
 (2, 2, 70.00),
+(3, 2, 50.00),
 (3, 3, 50.00);
 
 -- Insert data into application table

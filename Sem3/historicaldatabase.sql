@@ -1,11 +1,10 @@
--- Create Historical Database
 CREATE TABLE historical_lessons (
     historical_lesson_id SERIAL PRIMARY KEY,
     lesson_id INT,
     lesson_type VARCHAR(20),
     genre VARCHAR(50),
     instrument VARCHAR(50),
-    lesson_price FLOAT(50), -- Adjusted to FLOAT based on the new database schema
+    lesson_price FLOAT(50),
     student_name VARCHAR(200),
     student_email VARCHAR(100)
 );
@@ -22,35 +21,27 @@ INSERT INTO historical_lessons (
 SELECT
     l.lesson_id,
     l.type AS lesson_type,
-    l.proficiency AS genre,
-    (
-        SELECT MAX(instrument)
-        FROM group_lesson
-        WHERE lesson_ID = l.lesson_id
-    ) AS instrument,
-    (
-        SELECT MAX(lf.cost)
-        FROM lesson_fee lf
-        WHERE lf.lesson_ID = l.lesson_id
-    ) AS lesson_price,
-    (
-        SELECT MAX(p.name)
-        FROM attendants a
-        JOIN student s ON a.student_ID = s.student_ID
-        JOIN person p ON s.person_number = p.person_number
-        WHERE a.lesson_ID = l.lesson_id
-    ) AS student_name,
-    (
-        SELECT MAX(e.email)
-        FROM attendants a
-        JOIN student s ON a.student_ID = s.student_ID
-        JOIN person p ON s.person_number = p.person_number
-        JOIN email e ON p.person_number = e.person_number
-        WHERE a.lesson_ID = l.lesson_id
-    ) AS student_email
+    CASE
+        WHEN l.type = 'Ensemble' THEN ens.genre
+        ELSE NULL
+    END AS genre,
+    COALESCE(gl.instrument, il.instrument) AS instrument,
+    COALESCE(lf.cost, 0) AS lesson_price,
+    p.name AS student_name,
+    e.email AS student_email
 FROM
     lesson l
+JOIN attendants a ON l.lesson_id = a.lesson_id
+JOIN student s ON a.student_ID = s.student_ID
+JOIN person p ON s.person_number = p.person_number
+LEFT JOIN ensemble ens ON l.lesson_id = ens.lesson_id
+LEFT JOIN group_lesson gl ON l.lesson_id = gl.lesson_id
+LEFT JOIN individual_lesson il ON l.lesson_id = il.lesson_id
+LEFT JOIN (
+    SELECT lesson_ID, student_ID, MAX(cost) AS cost
+    FROM lesson_fee
+    GROUP BY lesson_ID, student_ID
+) lf ON l.lesson_id = lf.lesson_ID AND s.student_ID = lf.student_ID
+LEFT JOIN email e ON p.person_number = e.person_number
 WHERE
     l.lesson_id = YOUR_SPECIFIED_LESSON_ID;
-
-

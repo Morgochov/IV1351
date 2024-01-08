@@ -71,15 +71,6 @@ CREATE TABLE instructor (
 
 ALTER TABLE instructor ADD CONSTRAINT PK_instructor PRIMARY KEY (instructor_ID);
 
-
-CREATE TABLE instructor_payment (
- instructor_ID INT NOT NULL UNIQUE,
- payment_amount VARCHAR(10)
-);
-
-ALTER TABLE instructor_payment ADD CONSTRAINT PK_instructor_payment PRIMARY KEY (instructor_ID);
-
-
 CREATE TABLE instructor_schedule (
  instructor_ID INT NOT NULL UNIQUE,
  date DATE
@@ -166,14 +157,6 @@ CREATE TABLE application (
 ALTER TABLE application ADD CONSTRAINT PK_application PRIMARY KEY (student_ID);
 
 
-CREATE TABLE lesson_fee (
- lesson_ID INT NOT NULL UNIQUE,
- student_ID INT NOT NULL UNIQUE
-);
-
-ALTER TABLE lesson_fee ADD CONSTRAINT PK_lesson_fee PRIMARY KEY (lesson_ID);
-
-
 CREATE TABLE rentals (
  student_ID INT UNIQUE,
  instrument_ID INT UNIQUE,
@@ -193,10 +176,6 @@ ALTER TABLE email ADD CONSTRAINT FK_email_0 FOREIGN KEY (person_number) REFERENC
 
 
 ALTER TABLE instructor ADD CONSTRAINT FK_instructor_0 FOREIGN KEY (person_number) REFERENCES person (person_number);
-
-
-ALTER TABLE instructor_payment ADD CONSTRAINT FK_instructor_payment_0 FOREIGN KEY (instructor_ID) REFERENCES instructor (instructor_ID);
-
 
 ALTER TABLE instructor_schedule ADD CONSTRAINT FK_instructor_schedule_0 FOREIGN KEY (instructor_ID) REFERENCES instructor (instructor_ID);
 
@@ -228,11 +207,6 @@ ALTER TABLE student ADD CONSTRAINT FK_student_1 FOREIGN KEY (sibling_ID) REFEREN
 
 ALTER TABLE application ADD CONSTRAINT FK_application_0 FOREIGN KEY (student_ID) REFERENCES student (student_ID);
 ALTER TABLE application ADD CONSTRAINT FK_application_1 FOREIGN KEY (lesson_ID) REFERENCES lesson (lesson_ID);
-
-
-ALTER TABLE lesson_fee ADD CONSTRAINT FK_lesson_fee_0 FOREIGN KEY (lesson_ID) REFERENCES lesson (lesson_ID);
-ALTER TABLE lesson_fee ADD CONSTRAINT FK_lesson_fee_1 FOREIGN KEY (student_ID) REFERENCES student (student_ID);
-
 
 ALTER TABLE rentals ADD CONSTRAINT FK_rentals_0 FOREIGN KEY (student_ID) REFERENCES student (student_ID);
 ALTER TABLE rentals ADD CONSTRAINT FK_rentals_1 FOREIGN KEY (instrument_ID) REFERENCES instrument (instrument_ID);
