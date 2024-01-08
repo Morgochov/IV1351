@@ -15,7 +15,7 @@ ALTER TABLE instrument ADD CONSTRAINT PK_instrument PRIMARY KEY (instrument_ID);
 
 CREATE TABLE lesson_type (
  lesson_type_ID INT NOT NULL,
- type CHAR(15)
+ value VARCHAR(15)
 );
 
 ALTER TABLE lesson_type ADD CONSTRAINT PK_lesson_type PRIMARY KEY (lesson_type_ID);
@@ -39,7 +39,7 @@ ALTER TABLE phone ADD CONSTRAINT PK_phone PRIMARY KEY (person_number);
 
 CREATE TABLE proficiency (
  proficiency_ID INT NOT NULL,
- skill_level CHAR(15)
+ value VARCHAR(15)
 );
 
 ALTER TABLE proficiency ADD CONSTRAINT PK_proficiency PRIMARY KEY (proficiency_ID);

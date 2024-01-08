@@ -56,12 +56,12 @@ INSERT INTO instructor_schedule (instructor_ID, date) VALUES
 (1, '2024-01-25'),
 (2, '2024-01-25');
 
-INSERT INTO proficiency (proficiency_ID, skill_level) VALUES
+INSERT INTO proficiency (proficiency_ID, value) VALUES
 (1, 'Beginner'),
 (2, 'Intermediate'),
 (3, 'Advanced');
 
-INSERT INTO lesson_type (lesson_type_ID, type) VALUES
+INSERT INTO lesson_type (lesson_type_ID, value) VALUES
 (1, 'Individual'),
 (2, 'Group'),
 (3, 'Ensemble');
